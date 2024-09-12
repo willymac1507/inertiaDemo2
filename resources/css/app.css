@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.previous-button {
+    @apply mr-auto before:content-['Boo'];
+}
+
+.next-button {
+    @apply ml-auto after:content-['Foo'];
+}
