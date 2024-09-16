@@ -16,8 +16,10 @@ const username = computed(() => page.props.auth.user.username);
             <NavBar />
         </header>
     </section>
-    <section class="p-6">
-        <slot />
+    <section class="flex justify-center">
+        <div class="p-6 w-full max-w-2xl">
+            <slot />
+        </div>
     </section>
 </template>
 <style />

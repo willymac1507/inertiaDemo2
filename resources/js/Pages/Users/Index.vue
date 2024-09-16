@@ -1,5 +1,5 @@
 <script setup>
-import UsersTable from "../Shared/UsersTable.vue";
+import UsersTable from "../../Shared/UsersTable.vue";
 import { ref, watch } from "vue";
 import { router } from "@inertiajs/vue3";
 

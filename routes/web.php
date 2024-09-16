@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\User;
+use GuzzleHttp\Psr7\Request as Psr7Request;
+use Illuminate\Http\Client\Request as ClientRequest;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -10,7 +12,7 @@ Route::get('/', function () {
 });
 
 Route::get('/users', function () {
-  return Inertia::render('Users', [
+  return Inertia::render('Users/Index', [
     'users' => User::query()
       ->when(Request::input('search'), function ($query, $search) {
         $query->where('name', 'like', "%{$search}%");
@@ -24,6 +26,20 @@ Route::get('/users', function () {
       ]),
     'filters' => Request::only(['search'])
   ]);
+});
+
+Route::get('/users/create', function () {
+  return Inertia::render('Users/Create');
+});
+
+Route::post('/users', function () {
+  $attributes = Request::validate([
+    'name' => 'required',
+    'email' => ['required', 'email'],
+    'password' => 'required'
+  ]);
+  User::create($attributes);
+  return redirect('/users');
 });
 
 Route::get('/settings', function () {
