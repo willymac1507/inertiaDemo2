@@ -1,15 +1,14 @@
 <script setup>
-import { reactive } from "vue";
-import { router } from "@inertiajs/vue3";
+import { router, useForm } from "@inertiajs/vue3";
 
-let form = reactive({
+let form = useForm({
     name: "",
     email: "",
     password: "",
 });
 
 let submit = () => {
-    router.post("/users", form);
+    form.post("/users");
 };
 </script>
 <template>
@@ -32,6 +31,11 @@ let submit = () => {
                 value=""
                 required
             />
+            <div
+                v-if="form.errors.name"
+                v-text="form.errors.name"
+                class="text-xs text-red-500 mt-1"
+            ></div>
         </div>
         <div class="mb-6">
             <label
@@ -49,6 +53,11 @@ let submit = () => {
                 value=""
                 required
             />
+            <div
+                v-if="form.errors.email"
+                v-text="form.errors.email"
+                class="text-xs text-red-500 mt-1"
+            ></div>
         </div>
         <div class="mb-6">
             <label
@@ -64,13 +73,18 @@ let submit = () => {
                 id="password"
                 name="password"
                 value=""
-                required
             />
+            <div
+                v-if="form.errors.password"
+                v-text="form.errors.password"
+                class="text-xs text-red-500 mt-1"
+            ></div>
         </div>
         <div class="mb-6">
             <button
-                class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
+                class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500 disabled:bg-gray-500"
                 type="submit"
+                :disabled="form.processing"
             >
                 Create
             </button>

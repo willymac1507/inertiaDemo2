@@ -1,5 +1,4 @@
 <script setup>
-import { ArrowLongLeftIcon, ArrowLongRightIcon } from "@heroicons/vue/20/solid";
 import Paginator from "./Paginator.vue";
 
 const props = defineProps({

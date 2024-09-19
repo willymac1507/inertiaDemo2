@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full bg-gray-50">
 <!-- START head.blade.php -->
 <head>
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
 </head>
 <!-- END head.blade.php -->
 <!-- START body -->
-<body>
+<body class="h-full">
 @inertia
 </body>
 <!-- END body -->
